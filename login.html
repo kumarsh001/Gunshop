@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/CSS/login.css">
+</head>
+<body>
+
+<section class="form">
+    <h1>Login</h1>
+    <div class="login-form">
+        <h4>Username:</h4>
+        <div class="username-input">
+            <input type="email" placeholder="Type your username" id="username">
+            <!-- <div class="error" id="usernameError">Please enter your username.</div> -->
+        </div>
+        <h4>password:</h4>
+        <div class="password-input">
+            <input type="password" placeholder="Type your password" id="password">
+            <!-- <div class="error" id="passwordError">Please enter a password.</div> -->
+        </div>
+        <p>forgot password?</p>
+    </div>
+    <button class="login" onclick="func()">Login</button>
+    <div class="alternative-signup">
+        <p>Not remember? <a href="register.html"><span>Signup</span></a></p>
+    </div>
+</section>
+
+<script>
+
+    function func(){
+        const email = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // const usernameError = document.getElementById('usernameError');
+        // const passwordError = document.getElementById('passwordError');
+
+        // usernameError.style.display = 'none';
+        // passwordError.style.display = 'none';
+
+        
+        if (email == 'kumarsh682@gmail.com' && password == '789123'){
+            alert("Login Successful");
+            window.location.assign("index.html")
+        }
+        else{
+            alert("Invalid Access Token");
+        }
+    }
+
+
+
+</script>
+
+<!-- <script src="/JS/login.js"></script> -->
+</body>
+</html>
