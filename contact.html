@@ -1,147 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="./CSS/contact.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gun Shop - Contact Us</title>
+  <!-- Use the main global style.css for unified styling -->
+  <link rel="stylesheet" href="./CSS/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <style>
+    /* Specific tweaks to ensure contact form looks good in dark mode */
+    .contact-container {
+      max-width: 600px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background-color: var(--surface-color);
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact-container h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--text-color);
+    }
+
+    .contact-container label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .contact-container input,
+    .contact-container textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 0.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: inherit;
+    }
+
+    .contact-container textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-container input:focus,
+    .contact-container textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    .contact-container .error {
+      color: var(--error-color);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .contact-container button[type="submit"] {
+      width: 100%;
+      padding: 1rem;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 1rem;
+    }
+
+    .contact-container button[type="submit"]:hover {
+      background-color: var(--primary-hover);
+    }
+  </style>
 </head>
-<body>
 
-    <header>
-        <img src="./IMAGES/logo1.png" alt="">
+<body class="page-container" style="padding: 0; max-width: 100%;">
 
-        <div class="navbar">
-                <a href="index.html">Home</a>
-                <a href="product.html">Products</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="about.html">About</a>
-                <a href="login.html">Login</a>
-        
-        </div>
+  <!-- Modern Global Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <a href="index.html"><img src="./IMAGES/logo1.png" alt="Logo"></a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="product.html">Products</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <button id="theme-toggle" class="icon-btn"><i class="fa-solid fa-sun" id="theme-icon"></i></button>
+      <a href="cart.html" class="icon-btn cart-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cart-count">0</span>
+      </a>
+      <a href="login.html" class="icon-btn user-btn" id="user-display">
+        <i class="fa-regular fa-user"></i> <span id="user-name-text"></span>
+      </a>
+      <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
 
-        <div class="header-icons">
-            <i class="fa-solid fa-bars" id="menu-icon"></i>
-            <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
-            <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
-            <!-- <i class="fa-regular fa-user" id="user-icon"></i> -->
-        </div>
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
 
-        <div class="search-box">
+  <!-- Main Contact Content -->
+  <main class="page-container">
+    <div class="contact-container">
+      <h2>Contact Us</h2>
+      <form id="contactForm" onsubmit="return handleFormSubmit(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <div class="error" id="nameError">Please enter your name.</div>
 
-            <input type="search" name="" id="" placeholder="Search Here...">
-        </div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <div class="error" id="emailError">Please enter a valid email address.</div>
 
-        <div class="cart">
-            <div class="box">
-              <img src="./IMAGES/case1.png" alt="">
-              <div class="text">
-                 <h3>Scope</h3>
-                 <span>$100</span>
-                 <span>x1</span>
-              </div>
-             <i class="fa-solid fa-trash"></i>
-            </div>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <div class="error" id="phoneError">Please enter a valid phone number.</div>
 
-            <div class="box">
-                <img src="./IMAGES/grip2-removebg-preview.png" alt="">
-                <div class="text">
-                   <h3>Grip</h3>
-                   <span>$100</span>
-                   <span>x1</span>
-                </div>
-               <i class="fa-solid fa-trash"></i>
-              </div>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <div class="error" id="messageError">Please enter your message.</div>
 
-              <h2>Total:  $200</h2>
-              <a href="" class="btn">Checkout</a>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </main>
 
-        </div>
+  <!-- Modern Global Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Gun Shop</h3>
+        <p>Your premium destination for firearms and accessories.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <p>Email: info@gunshop.example</p>
+        <p>Phone: +1 (555) 123-4567</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Gun Shop E-commerce. All rights reserved.</p>
+    </div>
+  </footer>
 
-    </header>
+  <!-- Global Logic -->
+  <script src="./JS/script.js"></script>
+  <script>
+    function handleFormSubmit(e) {
+      e.preventDefault();
 
-    <section>
-     
-        <div class="container">
-            <h2>Contact Us</h2>
-            <form id="contactForm" onsubmit="return validateForm()">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name">
-                <div class="error" id="nameError">Please enter your name.</div>
-    
-                <label for="email">Email:</label>
-                <input type="text" id="email" name="email">
-                <div class="error" id="emailError">Please enter a valid email address.</div>
-    
-                <label for="phone">Phone Number:</label>
-                <input type="text" id="phone" name="phone">
-                <div class="error" id="phoneError">Please enter a valid phone number.</div>
-    
-                <label for="message">Message:</label>
-                <textarea id="message" name="message"></textarea>
-                <div class="error" id="messageError">Please enter your message.</div>
-    
-                <button type="submit">Submit</button> 
-            </form>
-        </div>
-    
-    </section>
+      const phoneInput = document.getElementById('phone').value.trim();
+      const phoneError = document.getElementById('phoneError');
 
-    <section>
-        <div class="footer">
-            <div class="container1">
-               <div class="row">
-                   <div class="footer-col1">
-                     <h4>Company</h4>
-                     <ul>
-                       <li><a href="">About us</a></li>
-                       <li><a href="">Our services</a></li>
-                       <li><a href="">Privacy policy</a></li>
-                       <li><a href="">Affiliate program</a></li>
-                     </ul>
-                   </div>
-        
-                   <div class="footer-col1">
-                     <h4>Get help</h4>
-                     <ul>
-                       <li><a href="">FAQ</a></li>
-                       <li><a href="">Shipping</a></li>
-                       <li><a href="">Returns</a></li>
-                       <li><a href="">Order status</a></li>
-                       <li><a href="">Payment option</a></li>
-                     </ul>
-                   </div>
-        
-                   <div class="footer-col1">
-                     <h4>Online shop</h4>
-                     <ul>
-                       <li><a href="">Gun</a></li>
-                       <li><a href="">Accessories</a></li>
-                       <li><a href="">Tools</a></li>
-                       <li><a href="">Kit</a></li>
-                     </ul>
-                   </div>
-        
-                   <div class="footer-col1">
-                     <h4>Follow us</h4>
-                     <div class="social-links">
-                       <a href="#"><i class="fab fa-facebook-f"></i></a>
-                       <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                       <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                     </div>
-                   </div>
-               </div>
-            </div>
-         </div>
-        
-               </div>
-           </div>
-        </section>   
-        
+      if (!/^\d{10}$/.test(phoneInput)) {
+        phoneError.style.display = 'block';
+        phoneError.textContent = "Phone number must be exactly 10 digits.";
+        return false;
+      } else {
+        phoneError.style.display = 'none';
+      }
 
-  
-    <script src="./JS/contact.js"></script>
+      // Assume valid, show toast and clear form
+      showToast("Message sent successfully!");
+      document.getElementById('contactForm').reset();
+      return false;
+    }
+  </script>
 </body>
+
 </html>

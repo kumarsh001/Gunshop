@@ -1,571 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product</title>
-    <link rel="stylesheet" href="./CSS/product.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
+    <title>Gun Shop - Products</title>
+    <!-- Use the existing CSS path -->
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
 
 <body>
-
-    <header>
-        <img src="./IMAGES/logo1.png" alt="">
-
-        <div class="navbar">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <a href="index.html"><img src="./IMAGES/logo1.png" alt="Logo"></a>
+        </div>
+        <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="product.html">Products</a>
-            <a href="contact.html">Contact Us</a>
+            <a href="product.html" class="active">Products</a>
+            <a href="contact.html">Contact</a>
             <a href="about.html">About</a>
-            <a href="login.html">Login</a>
-
         </div>
-
-        <div class="header-icons">
-            <i class="fa-solid fa-bars" id="menu-icon"></i>
-            <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
-            <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
-            <i class="fa-solid fa-moon" id="user-icon" ></i>
+        <div class="nav-actions">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search products...">
+                <div id="search-suggestions" class="suggestions-box"></div>
+            </div>
+            <button id="theme-toggle" class="icon-btn"><i class="fa-solid fa-sun" id="theme-icon"></i></button>
+            <a href="cart.html" class="icon-btn cart-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count">0</span>
+            </a>
+            <a href="login.html" class="icon-btn user-btn" id="user-display">
+                <i class="fa-regular fa-user"></i> <span id="user-name-text"></span>
+            </a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
         </div>
+    </nav>
 
-        <div class="search-box">
+    <!-- Page Header (Optional for dedicated product page) -->
+    <div class="page-container" style="padding-bottom: 0;">
+        <h1 style="border-bottom: none; margin-bottom: 0;">Full Catalog</h1>
+    </div>
 
-            <input type="search" name="" id="" placeholder="Search Here...">
-        </div>
+    <!-- Products Section -->
+    <section class="products-section" id="products-section" style="padding-top: 1rem;">
 
+        <div class="shop-layout">
+            <!-- Sidebar / Filters -->
+            <aside class="filters-sidebar">
+                <h3>Filters</h3>
+                <div class="filter-group">
+                    <h4>Category</h4>
+                    <label><input type="radio" name="category" value="All" checked> All</label>
+                    <label><input type="radio" name="category" value="Pistols"> Pistols</label>
+                    <label><input type="radio" name="category" value="Rifles"> Rifles</label>
+                    <label><input type="radio" name="category" value="Accessories"> Accessories</label>
+                </div>
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <input type="range" id="price-range" min="0" max="5000" step="100" value="5000">
+                    <p>Up to: $<span id="price-display">5000</span></p>
+                </div>
+            </aside>
 
-        <!-- cart -->
-
-        <div class="cart">
-            <h2 class="cart-title">Your cart</h2>
-
-
-            <div class="cart-content">
-                <!-- <div class="cart-box">
-                    <img src="/IMAGES/case1.png" alt="" class="cart-img">
-                    <div class="detail-box">
-                        <div class="cart-product-title">Case1</div>
-                        <div class="cart-price">$1200</div>
-                        <input type="number" value="1" class="cart-quantity">
+            <!-- Main Content -->
+            <div class="shop-content">
+                <div class="shop-controls">
+                    <p><span id="product-count">0</span> products found</p>
+                    <div class="sort-control">
+                        <label for="sort-select">Sort By:</label>
+                        <select id="sort-select">
+                            <option value="default">Default</option>
+                            <option value="newest">Newest</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
                     </div>
-                    <i class="fa-solid fa-trash cart-remove"></i>
-                </div> -->
-            </div>    
-
-                <div class="total">
-                    <div class="total-title">Total</div>
-                    <div class="total-price">$0</div>
                 </div>
-                <button type="button" class="btn-buy">Buy Now</button>
-                <i class="fa-solid fa-x" id="cart-close"></i>
-            </div>
-        </div>
 
-    </header>
-
-    <section class="product" id="product">
-        <div class="heading">
-            <h1>All <span>Products</span></h1>
-        </div>
-
-        <div class="shop-content">
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-g36c.png" alt="" class="product-img">
-
-                <h2 class="product-title">G36C Rifle</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+                <div id="product-grid" class="product-grid">
+                    <!-- Products injected via JS -->
                 </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-            </div>
-
-
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-akm.png" alt="" class="product-img">
-                <h2 class="product-title">AKM Rifle</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-            </div>
-
-
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-groza.png" alt="" class="product-img">
-
-                <h2 class="product-title">GROZA Rifle</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-            </div>
-
-
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-k2.png" alt="" class="product-img">
-               
-                    <h2 class="product-title ">K2 Rifle</h2>
-
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <span class="product-price">$1200</span>
-                    <i class="fa-solid fa-cart-shopping add-cart"></i>
-                </div>
-            
-
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-m416.png" alt="" class="product-img">
-
-                <h2 class="product-title">M416 Rifle</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-mk47_mutant.png" class="product-img" alt="">
-
-                <h2 class="product-title">MUTANT Rifle</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-qbz95.png" class="product-img" alt="">
-
-                <h2 class="product-title">QBZ95 Rifle</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-scar-l.png" class="product-img" alt="">
-
-                <h2 class="product-title">SCAR-L Rifle</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
+                <div id="no-product-message" class="hidden no-product-msg">No product found</div>
             </div>
         </div>
     </section>
 
-
-
-    <section class="product" id="product">
-        <div class="heading">
-            <h1>New<span>Shotguns</span></h1>
-        </div>
-
-        <div class="shop-content">
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-dbs.png" alt="" class="product-img">
-
-                <h2 class="product-title">DBS </h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modal-img" src="" alt="">
                 </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-o12.png" alt="" class="product-img">
-
-                <h2 class="product-title">O12</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart "></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-m16a4.png" alt="" class="product-img">
-
-                <h2 class="product-title">M16A4 </h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-s12k.png" alt="" class="product-img">
-
-                <h2 class="product-title">S12K</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-s686.png" alt="" class="product-img">
-
-                <h2 class="product-title">S686</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-s1897.png" alt="" class="product-img">
-
-                <h2 class="product-title">S1897</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-sawed_off.png" alt="" class="product-img">
-
-                <h2 class="product-title">Sawyed_off</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-            <div class="product-box">
-                <img src="./IMAGES/img-weapons-vector.png" alt="" class="product-img">
-
-                <h2 class="product-title">Vector</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-        </div>
-    </section>
-
-
-
-
-
-    <section class="product" id="product">
-        <div class="heading">
-            <h1>New<span>Accessories</span></h1>
-        </div>
-
-        <div class="shop-content">
-            <div class="product-box">
-                <img src="./IMAGES/bullet1.png" alt="" class="product-img">
-
-                <h2 class="product-title">Sniper tools </h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/case2-removebg-preview.png" class="product-img" alt="">
-
-                <h2 class="product-title">GUn barrel</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/case1.png" alt="" class="product-img">
-
-                <h2 class="product-title">Case </h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/grip2-removebg-preview.png" alt="" class="product-img">
-
-                <h2 class="product-title">HandGrip</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/liquid1.png" alt="" class="product-img">
-
-                <h2 class="product-title">Clean Liquid</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/magazine1.png" alt="" class="product-img">
-
-                <h2 class="product-title">Magazine</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-
-            <div class="product-box">
-                <img src="./IMAGES/stand1.png" alt="" class="product-img">
-
-                <h2 class="product-title">Stand</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-            <div class="product-box">
-                <img src="./IMAGES/thermal1-removebg-preview.png" alt="" class="product-img">
-
-                <h2 class="product-title">Thermal scope</h2>
-
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="product-price">$1200</span>
-                <i class="fa-solid fa-cart-shopping add-cart"></i>
-
-            </div>
-        </div>
-    </section>
-
-
-    <section>
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col1">
-                        <h4>Company</h4>
-                        <ul>
-                            <li><a href="">About us</a></li>
-                            <li><a href="">Our services</a></li>
-                            <li><a href="">Privacy policy</a></li>
-                            <li><a href="">Affiliate program</a></li>
-                        </ul>
+                <div class="modal-info">
+                    <h2 id="modal-title">Product Name</h2>
+                    <p class="modal-category" id="modal-category">Category</p>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
                     </div>
-
-                    <div class="footer-col1">
-                        <h4>Get help</h4>
-                        <ul>
-                            <li><a href="">FAQ</a></li>
-                            <li><a href="">Shipping</a></li>
-                            <li><a href="">Returns</a></li>
-                            <li><a href="">Order status</a></li>
-                            <li><a href="">Payment option</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-col1">
-                        <h4>Online shop</h4>
-                        <ul>
-                            <li><a href="">Gun</a></li>
-                            <li><a href="">Accessories</a></li>
-                            <li><a href="">Tools</a></li>
-                            <li><a href="">Kit</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-col1">
-                        <h4>Follow us</h4>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
+                    <h3 id="modal-price">$0.00</h3>
+                    <p id="modal-description">Product description goes here...</p>
+                    <button id="modal-add-to-cart" class="btn primary-btn">Add to Cart</button>
                 </div>
             </div>
         </div>
+    </div>
 
+    <!-- Toast Notification -->
+    <div id="toast-container"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Gun Shop</h3>
+                <p>Your premium destination for firearms and accessories.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p>Email: info@gunshop.example</p>
+                <p>Phone: +1 (555) 123-4567</p>
+            </div>
         </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gun Shop E-commerce. All rights reserved.</p>
         </div>
-    </section>
+    </footer>
 
-
-
-
-
-
-
-
-
-
-    <script src="./JS/product.js"></script>
-
+    <!-- Use the same script as index.html so the logic works across both pages -->
+    <script src="./JS/script.js"></script>
 </body>
 
 </html>

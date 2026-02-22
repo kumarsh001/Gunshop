@@ -1,239 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Gun Shop - Home</title>
+    <!-- Use the existing CSS path -->
     <link rel="stylesheet" href="./CSS/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
+
 <body>
-
-    <header>
-        <img src="./IMAGES/logo1.png" alt="">
-
-        <div class="navbar">
-                <a href="index.html">Home</a>
-                <a href="product.html">Products</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="about.html">About</a>
-                <a href="login.html">Login</a>
-        
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="./IMAGES/logo1.png" alt="Logo">
         </div>
-
-        <div class="header-icons">
-            <i class="fa-solid fa-bars" id="menu-icon"></i>
-            <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
-            <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
-            <!-- <i class="fa-regular fa-user" id="user-icon"></i> -->
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="product.html">Products</a>
+            <a href="contact.html">Contact</a>
+            <a href="about.html">About</a>
         </div>
-
-        <div class="search-box">
-
-            <input type="search" name="" id="" placeholder="Search Here...">
-        </div>
-
-        <div class="cart">
-            <div class="box">
-              <img src="./IMAGES/case1.png" alt="">
-              <div class="text">
-                 <h3>Case</h3>
-                 <span>$100</span>
-                 <span>x1</span>
-              </div>
-             <i class="fa-solid fa-trash"></i>
+        <div class="nav-actions">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search products...">
+                <div id="search-suggestions" class="suggestions-box"></div>
             </div>
-
-            <div class="box">
-                <img src="./IMAGES/grip2-removebg-preview.png" alt="">
-                <div class="text">
-                   <h3>Grip</h3>
-                   <span>$100</span>
-                   <span>x1</span>
-                </div>
-               <i class="fa-solid fa-trash"></i>
-              </div>
-
-              <h2>Total:  $200</h2>
-              <a href="" class="btn">Checkout</a>
-
+            <button id="theme-toggle" class="icon-btn"><i class="fa-solid fa-sun" id="theme-icon"></i></button>
+            <a href="cart.html" class="icon-btn cart-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count">0</span>
+            </a>
+            <a href="login.html" class="icon-btn user-btn" id="user-display">
+                <i class="fa-regular fa-user"></i> <span id="user-name-text"></span>
+            </a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
         </div>
+    </nav>
 
-    </header>
-
-    <section class="home" id="home">
-        <div class="home-text">
-               <span>NEW ARRIVAL</span>
-            <h1>HAMMERLI <br> FORGE H1 .22LR</h1>
-            <a href="#" class="btn">Order Now</a>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Premium Firearms & Accessories</h1>
+            <p>Equipping you with the best gear for your needs.</p>
+            <a href="#products-section" class="btn primary-btn">Shop Now</a>
         </div>
-
-        <div class="home-img">
-            <img src="./IMAGES/Screenshot 2024-08-26 083717.png" alt="">
-        </div>
-
     </section>
 
-    <section class="new" id="new">
-        <div class="heading">
-            <h1>Featured <span>Products</span></h1>
+    <!-- Products Section -->
+    <section class="products-section" id="products-section">
+        <div class="section-header">
+            <h2>Our Products</h2>
         </div>
 
-        <div class="swiper new-arrival">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide box">
-                    <img src="./IMAGES/stand1.png" alt="">
-                    <div class="content">
-                        <a href="#" class="btn">Buy Now</a>
+        <div class="shop-layout">
+            <!-- Sidebar / Filters -->
+            <aside class="filters-sidebar">
+                <h3>Filters</h3>
+                <div class="filter-group">
+                    <h4>Category</h4>
+                    <label><input type="radio" name="category" value="All" checked> All</label>
+                    <label><input type="radio" name="category" value="Pistols"> Pistols</label>
+                    <label><input type="radio" name="category" value="Rifles"> Rifles</label>
+                    <label><input type="radio" name="category" value="Accessories"> Accessories</label>
+                </div>
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <input type="range" id="price-range" min="0" max="5000" step="100" value="5000">
+                    <p>Up to: $<span id="price-display">5000</span></p>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="shop-content">
+                <div class="shop-controls">
+                    <p><span id="product-count">0</span> products found</p>
+                    <div class="sort-control">
+                        <label for="sort-select">Sort By:</label>
+                        <select id="sort-select">
+                            <option value="default">Default</option>
+                            <option value="newest">Newest</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
                     </div>
                 </div>
 
-                <div class="swiper-slide box">
-                    <img src="./IMAGES/case1.png" alt="">
-                    <div class="content">
-                        <a href="#" class="btn">Buy Now</a>
-                    </div>
+                <div id="product-grid" class="product-grid">
+                    <!-- Products injected via JS -->
                 </div>
-                <div class="swiper-slide box">
-                    <img src="./IMAGES/liquid1.png" alt="">
-                    <div class="content">
-                        <a href="#" class="btn">Buy Now</a>
-                    </div>
-                </div>
-                
-                <div class="swiper-slide box">
-                    <img src="./IMAGES/thermal1-removebg-preview.png" alt="">
-                    <div class="content">
-                        <a href="#" class="btn">Buy Now</a>
-                    </div>
-                </div>
-                
-                <div class="swiper-slide box">
-                    <img src="./IMAGES/case2-removebg-preview.png" alt="">
-                    <div class="content">
-                        <a href="#" class="btn">Buy Now</a>
-                    </div>
-                </div>
-                
-                <div class="swiper-slide box">
-                    <img src="./IMAGES/grip2-removebg-preview.png" alt="">
-                    <div class="content">
-                        <a href="#" class="btn">Buy Now</a>
-                    </div>
-                </div>
+                <div id="no-product-message" class="hidden no-product-msg">No product found</div>
             </div>
         </div>
-
-
-        <div class="swiper new-arrival">
-            <div class="swiper-wrapper">
-
-                <div class="swiper-slide box">
-                    <img src="./IMAGES/thermal1-removebg-preview.png" alt="">
-                    <div class="content">
-                        <a href="#" class="btn">Buy Now</a>
-                    </div>
-                </div>
-                
-                <div class="swiper-slide box">
-                    <img src="./IMAGES/case2-removebg-preview.png" alt="">
-                    <div class="content">
-                        <a href="#" class="btn">Buy Now</a>
-                    </div>
-                </div>
-                
-                <div class="swiper-slide box">
-                    <img src="./IMAGES/grip2-removebg-preview.png" alt="">
-                    <div class="content">
-                        <a href="#" class="btn">Buy Now</a>
-                    </div>
-                </div>
-
-                <div class="swiper-slide box">
-                    <img src="./IMAGES/stand1.png" alt="">
-                    <div class="content">
-                        <a href="#" class="btn">Buy Now</a>
-                    </div>
-                </div>
-
-                <div class="swiper-slide box">
-                    <img src="./IMAGES/case1.png" alt="">
-                    <div class="content">
-                        <a href="#" class="btn">Buy Now</a>
-                    </div>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./IMAGES/liquid1.png" alt="">
-                    <div class="content">
-                        <a href="#" class="btn">Buy Now</a>
-                    </div>
-                </div>
-                
-                
-            </div>
-        </div>
-
-
-
     </section>
 
-    <section>
-    <div class="footer">
-        <div class="container">
-           <div class="row">
-               <div class="footer-col1">
-                 <h4>Company</h4>
-                 <ul>
-                   <li><a href="">About us</a></li>
-                   <li><a href="">Our services</a></li>
-                   <li><a href="">Privacy policy</a></li>
-                   <li><a href="">Affiliate program</a></li>
-                 </ul>
-               </div>
-    
-               <div class="footer-col1">
-                 <h4>Get help</h4>
-                 <ul>
-                   <li><a href="">FAQ</a></li>
-                   <li><a href="">Shipping</a></li>
-                   <li><a href="">Returns</a></li>
-                   <li><a href="">Order status</a></li>
-                   <li><a href="">Payment option</a></li>
-                 </ul>
-               </div>
-    
-               <div class="footer-col1">
-                 <h4>Online shop</h4>
-                 <ul>
-                   <li><a href="">Gun</a></li>
-                   <li><a href="">Accessories</a></li>
-                   <li><a href="">Tools</a></li>
-                   <li><a href="">Kit</a></li>
-                 </ul>
-               </div>
-    
-               <div class="footer-col1">
-                 <h4>Follow us</h4>
-                 <div class="social-links">
-                   <a href="#"><i class="fab fa-facebook-f"></i></a>
-                   <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                   <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                 </div>
-               </div>
-           </div>
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modal-img" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-title">Product Name</h2>
+                    <p class="modal-category" id="modal-category">Category</p>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <h3 id="modal-price">$0.00</h3>
+                    <p id="modal-description">Product description goes here...</p>
+                    <button id="modal-add-to-cart" class="btn primary-btn">Add to Cart</button>
+                </div>
+            </div>
         </div>
-     </div>
-    
-           </div>
-       </div>
-    </section>   
-    
+    </div>
 
+    <!-- Toast Notification -->
+    <div id="toast-container"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-   <script src="./JS/home.js"></script> 
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Gun Shop</h3>
+                <p>Your premium destination for firearms and accessories.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p>Email: info@gunshop.example</p>
+                <p>Phone: +1 (555) 123-4567</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gun Shop E-commerce. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Changed src here from ./JS/home.js to ./JS/script.js per requirement -->
+    <script src="./JS/script.js"></script>
 </body>
+
 </html>

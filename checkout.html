@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gun Shop - Checkout</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <a href="index.html"><img src="./IMAGES/logo1.png" alt="Logo"></a>
+        </div>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="icon-btn"><i class="fa-solid fa-sun" id="theme-icon"></i></button>
+            <a href="login.html" class="icon-btn user-btn" id="user-display">
+                <i class="fa-regular fa-user"></i> <span id="user-name-text"></span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="page-container checkout-page">
+        <div id="checkout-form-container">
+            <h1>Checkout</h1>
+            <form id="checkout-form" class="checkout-layout">
+                <div class="checkout-details">
+                    <h3>Shipping Address</h3>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="chk-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="chk-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea id="chk-address" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Pincode/ZIP</label>
+                        <input type="text" id="chk-pincode" required>
+                    </div>
+
+                    <h3 class="mt-4">Payment Method</h3>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="cod" checked>
+                            <span>Cash on Delivery (COD)</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="card">
+                            <span>Credit/Debit Card</span>
+                        </label>
+                    </div>
+                    <!-- Minimal Card UI shown if card selected -->
+                    <div id="card-ui" class="hidden">
+                        <div class="form-group border-input">
+                            <label>Card Number</label>
+                            <input type="text" placeholder="XXXX XXXX XXXX XXXX">
+                        </div>
+                        <div class="form-inline">
+                            <div class="form-group border-input">
+                                <label>Expiry</label>
+                                <input type="text" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group border-input">
+                                <label>CVV</label>
+                                <input type="password" placeholder="XXX">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-summary">
+                    <h2>Order Final Summary</h2>
+                    <div id="checkout-items" class="checkout-items-mini"></div>
+                    <div class="summary-line">
+                        <span>Subtotal</span>
+                        <span id="chk-subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>GST (18%)</span>
+                        <span id="chk-gst">$0.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Delivery</span>
+                        <span id="chk-delivery">$0.00</span>
+                    </div>
+                    <div class="summary-border-line"></div>
+                    <div class="summary-line total">
+                        <span>Amount to Pay</span>
+                        <span id="chk-total">$0.00</span>
+                    </div>
+                    <button type="submit" class="btn primary-btn btn-full mt-3">Place Order</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="order-success" class="hidden order-success-msg">
+            <i class="fa-solid fa-circle-check success-icon"></i>
+            <h2>Order Placed Successfully!</h2>
+            <p>Your Order ID is: <strong id="success-order-id"></strong></p>
+            <p>Total Paid: <strong id="success-total-paid"></strong></p>
+            <p>Thank you for shopping with us.</p>
+            <a href="index.html" class="btn primary-btn mt-3">Return to Home</a>
+        </div>
+    </main>
+    <div id="toast-container"></div>
+    <script src="./JS/script.js"></script>
+</body>
+
+</html>

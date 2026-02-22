@@ -1,60 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="./CSS/login.css">
+    <title>Gun Shop - Login</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
-<body>
 
-<section class="form">
-    <h1>Login</h1>
-    <div class="login-form">
-        <h4>Username:</h4>
-        <div class="username-input">
-            <input type="email" placeholder="Type your username" id="username">
-            <!-- <div class="error" id="usernameError">Please enter your username.</div> -->
+<body class="auth-page">
+    <nav class="navbar">
+        <div class="nav-logo">
+            <a href="index.html"><img src="./IMAGES/logo1.png" alt="Logo"></a>
         </div>
-        <h4>password:</h4>
-        <div class="password-input">
-            <input type="password" placeholder="Type your password" id="password">
-            <!-- <div class="error" id="passwordError">Please enter a password.</div> -->
+        <div class="nav-actions">
+            <button id="theme-toggle" class="icon-btn"><i class="fa-solid fa-sun" id="theme-icon"></i></button>
         </div>
-        <p>forgot password?</p>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2 id="auth-title">Welcome Back</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Enter your password">
+                </div>
+                <p id="auth-error" class="error-msg hidden">Invalid email or password.</p>
+                <button type="submit" class="btn primary-btn btn-full">Login</button>
+                <p class="auth-switch">Don't have an account? <span id="toggle-signup" class="text-link">Sign up</span>
+                </p>
+            </form>
+
+            <form id="signup-form" class="hidden">
+                <div class="form-group">
+                    <label for="reg-name">Name</label>
+                    <input type="text" id="reg-name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" required placeholder="Create a password">
+                </div>
+                <button type="submit" class="btn primary-btn btn-full">Sign Up</button>
+                <p class="auth-switch">Already have an account? <span id="toggle-login" class="text-link">Login</span>
+                </p>
+            </form>
+        </div>
     </div>
-    <button class="login" onclick="func()">Login</button>
-    <div class="alternative-signup">
-        <p>Not remember? <a href="register.html"><span>Signup</span></a></p>
-    </div>
-</section>
-
-<script>
-
-    function func(){
-        const email = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-
-        // const usernameError = document.getElementById('usernameError');
-        // const passwordError = document.getElementById('passwordError');
-
-        // usernameError.style.display = 'none';
-        // passwordError.style.display = 'none';
-
-        
-        if (email == 'kumarsh682@gmail.com' && password == '789123'){
-            alert("Login Successful");
-            window.location.assign("index.html")
-        }
-        else{
-            alert("Invalid Access Token");
-        }
-    }
-
-
-
-</script>
-
-<!-- <script src="/JS/login.js"></script> -->
+    <div id="toast-container"></div>
+    <script src="./JS/script.js"></script>
 </body>
+
 </html>

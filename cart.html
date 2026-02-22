@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gun Shop - Shopping Cart</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <a href="index.html"><img src="./IMAGES/logo1.png" alt="Logo"></a>
+        </div>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="icon-btn"><i class="fa-solid fa-sun" id="theme-icon"></i></button>
+            <a href="login.html" class="icon-btn user-btn" id="user-display">
+                <i class="fa-regular fa-user"></i> <span id="user-name-text"></span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="page-container">
+        <h1>Your Shopping Cart</h1>
+        <div class="cart-layout">
+            <div class="cart-items-container">
+                <div id="cart-items-list">
+                    <!-- Cart items injected here -->
+                </div>
+                <div id="empty-cart-message" class="hidden">
+                    <p>Your cart is empty.</p>
+                    <a href="index.html" class="btn outline-btn">Continue Shopping</a>
+                </div>
+            </div>
+            <div class="cart-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-line">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="summary-line">
+                    <span>GST (18%)</span>
+                    <span id="cart-gst">$0.00</span>
+                </div>
+                <div class="summary-line">
+                    <span>Delivery</span>
+                    <span id="cart-delivery">$0.00</span>
+                </div>
+                <div class="summary-border-line"></div>
+                <div class="summary-line total">
+                    <span>Total</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button id="checkout-btn" class="btn primary-btn btn-full">Proceed to Checkout</button>
+            </div>
+        </div>
+    </main>
+    <div id="toast-container"></div>
+    <script src="./JS/script.js"></script>
+</body>
+
+</html>
